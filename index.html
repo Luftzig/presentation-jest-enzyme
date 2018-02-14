@@ -1,8 +1,8 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="author" content="Yoav Luft"><title>Frontend Testing with Jest and Enzyme</title><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black-translucent" name="apple-mobile-web-app-status-bar-style"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui" name="viewport"><link href="reveal.js/css/reveal.css" rel="stylesheet"><link rel="stylesheet" href="reveal.js/css/theme/black.css" id="theme"><link href="reveal.js/lib/css/zenburn.css" rel="stylesheet"><script>var link = document.createElement( 'link' );
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="author" content="Yoav Luft"><title>Frontend Testing with Jest and Enzyme</title><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black-translucent" name="apple-mobile-web-app-status-bar-style"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui" name="viewport"><link href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/3.6.0/css/reveal.css" rel="stylesheet"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/3.6.0/css/theme/black.css" id="theme"><link href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/3.6.0/lib/css/zenburn.css" rel="stylesheet"><script>var link = document.createElement( 'link' );
 link.rel = 'stylesheet';
 link.type = 'text/css';
-link.href = window.location.search.match( /print-pdf/gi ) ? "reveal.js/css/print/pdf.css" : "reveal.js/css/print/paper.css";
-document.getElementsByTagName( 'head' )[0].appendChild( link );</script><!--[if lt IE 9]><script src="reveal.js/lib/js/html5shiv.js"></script><![endif]--></head><body><div class="reveal"><div class="slides"><section class="title" data-state="title"><h1>Frontend Testing with Jest and Enzyme</h1><p class="author"><small>Yoav Luft</small></p></section><section><section id="what_is_jest"><h2>What is Jest?</h2><div class="paragraph"><p>Javascript testing framework from Facebook.</p></div></section><section id="how_is_jest_different_from_mocha_karma_lab_tape_whatever"><h2>How is Jest different from Mocha/Karma/Lab/Tape/Whatever?</h2><div class="paragraph"><p>Lots of built in stuff like:</p></div>
+link.href = window.location.search.match( /print-pdf/gi ) ? "https://cdnjs.cloudflare.com/ajax/libs/reveal.js/3.6.0/css/print/pdf.css" : "https://cdnjs.cloudflare.com/ajax/libs/reveal.js/3.6.0/css/print/paper.css";
+document.getElementsByTagName( 'head' )[0].appendChild( link );</script><!--[if lt IE 9]><script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/3.6.0/lib/js/html5shiv.js"></script><![endif]--></head><body><div class="reveal"><div class="slides"><section class="title" data-state="title"><h1>Frontend Testing with Jest and Enzyme</h1><p class="author"><small>Yoav Luft</small></p></section><section><section id="what_is_jest"><h2>What is Jest?</h2><div class="paragraph"><p>Javascript testing framework from Facebook.</p></div></section><section id="how_is_jest_different_from_mocha_karma_lab_tape_whatever"><h2>How is Jest different from Mocha/Karma/Lab/Tape/Whatever?</h2><div class="paragraph"><p>Lots of built in stuff like:</p></div>
 <div class="ulist"><ul><li class="fragment"><p>Mocking</p></li><li class="fragment"><p>Code coverage</p></li><li class="fragment"><p>Snapshots</p></li><li class="fragment"><p>React Support</p></li></ul></div></section><section id="but_frankly"><h2>But frankly?</h2><div class="imageblock stretch" style=""><img src="dunno.gif" alt="dunno" height="100%"></div></section></section>
 <section><section id="what_is_enzyme"><h2>What is Enzyme</h2><div class="paragraph"><p>A testing utility for React from AirBnB.</p></div></section><section id="why_not_react_testutil"><h2>Why not React TestUtil?</h2><div class="paragraph"><p>Nicer, shorter API.</p></div></section></section>
 <section><section id="how_to_use_jest"><h2>How to use Jest</h2><div class="listingblock"><div class="title">trees.test.js</div><div class="content"><pre class="highlight"><code data-noescape class="javascript language-javascript">import {fromArrayWithParents} from './trees'
@@ -82,7 +82,7 @@ wrapper.setState({isReady: true})</code></pre></div></div></section></section>
 <section id="lets_try"><h2>Lets Try!</h2><div class="paragraph"><p>User alert subscription system with the following features:</p></div>
 <div class="ulist"><ul><li><p>List of alerts</p></li><li><p>A button for each alert to subscribe</p></li><li><p>The button will have an Icon</p></li><li><p>Once subscribed, it will call a handler</p></li><li><p>Once subscribed, the icon will change</p></li><li><p>Unsubscribing will also call a handle</p></li></ul></div></section>
 <section id="hints"><h2>Hints</h2><div class="ulist"><ul><li><p>Use TDD</p></li><li><p>Use enzyme to render the component</p></li><li><p>Minimal tests</p></li><li><p>&#8984;&#8997;-V to disable Vim mode on my laptop</p></li></ul></div></section>
-<section id="thank_you"><h2>Thank you!</h2><div class="paragraph"><p><span class="small">created with asciidoc and reveal.js</span></p></div></section></div></div><script src="reveal.js/lib/js/head.min.js"></script><script src="reveal.js/js/reveal.js"></script><script>// See https://github.com/hakimel/reveal.js#configuration for a full list of configuration options
+<section id="thank_you"><h2>Thank you!</h2><div class="paragraph"><p><span class="small">created with asciidoc and reveal.js</span></p></div></section></div></div><script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/3.6.0/lib/js/head.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/3.6.0/js/reveal.js"></script><script>// See https://github.com/hakimel/reveal.js#configuration for a full list of configuration options
 Reveal.initialize({
   // Display controls in the bottom right corner
   controls: true,
@@ -166,11 +166,11 @@ Reveal.initialize({
 
   // Optional libraries used to extend on reveal.js
   dependencies: [
-      { src: 'reveal.js/lib/js/classList.js', condition: function() { return !document.body.classList; } },
-      { src: 'reveal.js/plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
-      { src: 'reveal.js/plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
-      { src: 'reveal.js/plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
-      { src: 'reveal.js/plugin/zoom-js/zoom.js', async: true },
-      { src: 'reveal.js/plugin/notes/notes.js', async: true }
+      { src: 'https://cdnjs.cloudflare.com/ajax/libs/reveal.js/3.6.0/lib/js/classList.js', condition: function() { return !document.body.classList; } },
+      { src: 'https://cdnjs.cloudflare.com/ajax/libs/reveal.js/3.6.0/plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+      { src: 'https://cdnjs.cloudflare.com/ajax/libs/reveal.js/3.6.0/plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+      { src: 'https://cdnjs.cloudflare.com/ajax/libs/reveal.js/3.6.0/plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+      { src: 'https://cdnjs.cloudflare.com/ajax/libs/reveal.js/3.6.0/plugin/zoom-js/zoom.js', async: true },
+      { src: 'https://cdnjs.cloudflare.com/ajax/libs/reveal.js/3.6.0/plugin/notes/notes.js', async: true }
   ]
 });</script></body></html>
