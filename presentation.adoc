@@ -1,0 +1,250 @@
+= Frontend Testing with Jest and Enzyme
+:backend: revealjs
+:source-highlighter: highlightjs
+:author: Yoav Luft
+
+== What is Jest?
+
+Javascript testing framework from Facebook.
+
+=== How is Jest different from Mocha/Karma/Lab/Tape/Whatever?
+
+[%step]
+Lots of built in stuff like:
+
+[%step]
+* Mocking
+* Code coverage
+* Snapshots
+* React Support
+
+=== But frankly?
+
+[.stretch]
+image::dunno.gif[]
+
+== What is Enzyme
+
+A testing utility for React from AirBnB.
+
+=== Why not React TestUtil?
+
+[%step]
+Nicer, shorter API.
+
+== How to use Jest
+
+.trees.test.js
+[source, javascript]
+----
+import {fromArrayWithParents} from './trees'
+
+test('construct one tree', () => {
+  const array = [{val: 'a', id: 1}, {val: 'b', id: 2, parent: 1}, {val: 'c', id: 3, parent: 1}]
+  const tree = fromArrayWithParents({keyBy: 'id', parentBy: 'parent'}, array)
+  expect(tree).toEqual(
+    expect.objectContaining({
+      children: expect.arrayContaining([expect.objectContaining({id: 2}), expect.objectContaining({id: 3})])
+    })
+  )
+});
+----
+
+[NOTE.speaker]
+--
+Talk about naming files `x.test.js`.
+
+Don't get into the details of explaining the test itself
+--
+
+=== Just Run It!
+
+ $ ./node_modules/.bin/jest
+
+=== Making Assertions
+
+Jest uses the `expect` keyword for making assertions.
+
+[source, javascript]
+----
+expect([1, 2, 3]).toContains(2)
+expect(false).toBeFalsy()
+expect({text: "Hello!"}).toHaveProperty("text", "Hello!")
+----
+
+=== Negating and Matchers
+
+[source, javascript]
+----
+expect("dolorem ipsum, quia dolor").not.toEqual("Hello")
+expect("dolorem ipsum, quia dolor").toEqual(
+  expect.stringMatching(/dolor/)
+)
+expect(["dolorem", "ipsum", "quia", "dolor").toEqual(
+  expect.arrayContaining(["dolor", "ipsum"])
+)
+----
+
+=== Promises
+
+[source, javascript]
+----
+test('resolves to lemon', () => {
+  // make sure to add a return statement
+  return expect(Promise.resolve('lemon'))
+    .resolves.toBe('lemon'); <1>
+});
+----
+<1> Returning the promise will make the test wait until it is settled!
+
+=== Mocking
+
+[source, javascript]
+----
+const spy = jest.fn()
+[0, 1, 2].forEach(spy)
+expect(spy.mock.calls).toHaveLength(3)
+// Expect the second call to be 1
+expect(spy.mock.calls[1][0]).toBe(1)
+----
+
+=== Mocking "Classes"
+
+[source, javascript]
+----
+const myMock = jest.fn();
+
+const a = new myMock();
+const b = {};
+const bound = myMock.bind(b);
+bound();
+
+console.log(myMock.mock.instances);
+----
+
+=== Mock Behaviours
+
+[source, javascript]
+----
+// Mock return value
+const mock = jest.fn();
+mock
+  .mockReturnValueOnce("Hello, ")
+  .mockReturnValueOnce("World")
+  .mockReturnValue("Ok, enough!")
+
+// Mock implementation
+const mockCallback = jest.fn(cb => cb(null, true))
+
+// Mock Modules
+jest.mock('../foo')
+const foo = require('../foo')
+// foo is a mock
+foo.mockImplementation(() => "bar")
+----
+
+== Using Enzyme
+
+Enzyme is a utility library for inspecting React code.
+
+=== Rendering Components
+
+Enzyme can render React components and returns a wrapper that can be queried for testing.
+
+[source, javascript]
+----
+test('renders three <Foo /> components', () => {
+  const wrapper = shallow(<MyComponent />);
+  expect(wrapper.find(Foo)).to.have.length(3);
+});
+----
+
+=== Rendering Types: Shallow Rendering
+
+Shallow rendering in Enzyme would render a component, but not its child components.
+
+=== Rendering Types: Full Rendering
+
+Full rendering is used for testing component interaction with the DOM, or component lifecycle events such as `componentDidMount()`
+
+It must be run in a browser like environment, such as `jsdom`
+
+=== Asserting on Components
+
+.Getting DOM elements
+[source, javascript]
+----
+const wrapper = shallow(<MyComponent />);
+expect(wrapper.find('.foo')).to.have.length(1);
+
+expect(wrapper.find('div.some-class')).to.have.length(3);
+----
+
+=== !
+
+.Getting child components
+[source, javascript]
+----
+const fakeItem = {content: "dolorem ipsum, quia dolor sit amet"};
+const wrapper = shallow(<Comment item={fakeItem}/>);
+expect(wrapper.contains(<EngagementsCounters/>)).toBeTruthy();
+----
+
+=== !
+
+.Rendring text or HTML
+[source, javascript]
+----
+const fakeItem = {content: "dolorem ipsum, quia dolor sit amet"};
+const wrapper = shallow(<Comment item={fakeItem}/>);
+expect(wrapper.text()).toContains(fakeItem.content);
+expect(wrapper.html()).toContains(/<button .*/);
+----
+
+=== Simulating React Events
+
+We can simulate various events, like clicks:
+
+[source, javascript]
+----
+const spy = jest.fn()
+const wrapper = shallow(<OurButton handleClick={spy}/>)
+wrapper.simulate('click')
+expect(spy).toHaveBeenCalled()
+----
+
+=== !
+
+.Simulating Prop or State changes
+[source, javascript]
+----
+const wrapper = shallow(<OurCompnent/>)
+wrapper.setProps({displayMode: 'vertical'})
+expect(wrapper.find('.vertical')).toHaveLength(1)
+
+// Can also use setState
+wrapper.setState({isReady: true})
+----
+
+== Lets Try!
+
+User alert subscription system with the following features:
+
+* List of alerts
+* A button for each alert to subscribe
+* The button will have an Icon
+* Once subscribed, it will call a handler
+* Once subscribed, the icon will change
+* Unsubscribing will also call a handle
+
+== Hints
+
+* Use TDD
+* Use enzyme to render the component
+* Minimal tests
+* &#8984;&#8997;-V to disable Vim mode on my laptop
+
+== Thank you!
+
+[small]#created with asciidoc and reveal.js#
+

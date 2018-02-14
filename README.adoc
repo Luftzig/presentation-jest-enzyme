@@ -1,0 +1,38 @@
+Front-End Testing with Jest and Enzyme: Asciidoc + Reveal.js presentation
+=========================================================================
+
+Perquisites
+-----------
+
+Ruby, bundler, asciidoc
+
+Installation
+------------
+
+. Create the file `Gemfile` with the following content:
+
+[source, ruby]
+----
+
+source 'https://rubygems.org'
+
+gem 'asciidoctor-revealjs'
+----
+
+. Run the following:
+
+[source, bash]
+----
+bundle config --local github.https true
+bundle --path=.bundle/gems --binstubs=./bundle/bin
+git clone -b 3.6.0 --depth 1 https://github.com/hakimel/reveal.js.git
+----
+
+. Write your presentation as asciidoc
+
+. Compile your presentation:
+
+ bundle exec asciidoctor-revealjs <presentation file>
+
+. Voilà! You should have your presentation in an HTML file
+
